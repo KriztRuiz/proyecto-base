@@ -1,0 +1,21 @@
+{
+  "hero_roles": ["Frontend Developer","UI/UX Enthusiast","Open Source Contributor"],
+  "about_title": "About Me",
+  "about_timeline": [
+    {"year":"2021","text":"Started as a Junior Developer"},
+    {"year":"2022","text":"Built e‑commerce platforms"},
+    {"year":"2023","text":"Led frontend teams"}
+  ],
+  "projects_title":"My Projects",
+  "projects_list":[
+    {"title":"Project A","desc":"A cool app","tech":["React","Node"],"link":"https://..."},
+    {"title":"Project B","desc":"Another app","tech":["TS","Tailwind"],"link":"https://..."}
+  ],
+  "contact_title":"Get In Touch",
+  "contact_name":"Your Name",
+  "contact_email":"Your Email",
+  "contact_message":"Your Message",
+  "contact_button":"Send Message",
+  "contact_success":"Message sent successfully!",
+  "contact_error":"Failed to send message."
+}

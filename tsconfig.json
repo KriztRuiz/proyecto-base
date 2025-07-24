@@ -1,0 +1,30 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    /* Target y módulo modernos para Vite */
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["DOM", "ESNext"],
+    /* JSX automáticamente con el runtime de React */
+    "jsx": "react-jsx",
+    /* Seguridad y consistencia de tipos */
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    /* Importaciones y CommonJS interop */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    /* Eliminación de código muerto */
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    /* Tipos globales adicionales */
+    "types": ["node"]
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
+}

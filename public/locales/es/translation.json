@@ -1,0 +1,37 @@
+{
+  "hero_title": "Bienvenido a Mi Portafolio",
+  "hero_subtitle": "Ofrezco soluciones innovadoras y creativas.",
+  "hero_roles": ["Desarrollador Frontend", "Entusiasta de UI/UX", "Colaborador Open Source"],
+  "cta": "Ver Proyectos",
+
+  "about_title": "Sobre Mí",
+  "about_timeline": [
+    { "year": "2021", "text": "Comencé como Desarrollador Junior" },
+    { "year": "2022", "text": "Construí plataformas de comercio electrónico" },
+    { "year": "2023", "text": "Lideré equipos de frontend" }
+  ],
+
+  "projects_title": "Mis Proyectos",
+  "projects_list": [
+    {
+      "title": "Proyecto A",
+      "desc": "Una aplicación innovadora",
+      "tech": ["React", "Node.js"],
+      "link": "https://proyecto-a.example.com"
+    },
+    {
+      "title": "Proyecto B",
+      "desc": "Otra aplicación destacada",
+      "tech": ["TypeScript", "Tailwind CSS"],
+      "link": "https://proyecto-b.example.com"
+    }
+  ],
+
+  "contact_title": "Contáctame",
+  "contact_name": "Tu Nombre",
+  "contact_email": "Tu Correo",
+  "contact_message": "Tu Mensaje",
+  "contact_button": "Enviar Mensaje",
+  "contact_success": "¡Mensaje enviado con éxito!",
+  "contact_error": "Error al enviar el mensaje."
+}
