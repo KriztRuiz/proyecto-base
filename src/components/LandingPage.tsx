@@ -1,45 +1,40 @@
 // src/components/LandingPage.tsx
+/*import React, { memo } from 'react';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { Header } from './Header';
 import Container from './Container';
+import Header from './Header';
 import { Button } from './Button';
+import { slideUp } from '../lib/motionVariants';
 
-export function LandingPage() {
+const LandingPage = () => {
   const { t } = useTranslation();
 
   return (
     <Container>
       <Header />
-      <header className="text-center space-y-8">
+      <section className="text-center space-y-8 py-16">
         <motion.h1
           className="text-5xl font-bold"
-          initial={{ y: -50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
+          variants={slideUp()}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
         >
-          {t('hero_title')}
+          {t('landing_title')}
         </motion.h1>
-
-        <motion.p
-          className="text-xl"
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: 'easeOut' }}
-        >
-          {t('hero_subtitle')}
+        <motion.p variants={slideUp(0.2)}>
+          {t('landing_subtitle')}
         </motion.p>
-
-        <motion.div
-          initial={{ scale: 0.8, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 200, damping: 20, delay: 0.4 }}
-        >
-          <Button onClick={() => alert('CTA clicked!')}>
+        <motion.div variants={slideUp(0.4)}>
+          <Button onClick={() => alert(t('cta_alert'))}>
             {t('cta')}
           </Button>
         </motion.div>
-      </header>
+      </section>
     </Container>
   );
-}
+};
+
+export default memo(LandingPage);
+*/

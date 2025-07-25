@@ -1,4 +1,10 @@
 {
+  "home": "Home",
+  "about": "About",
+  "projects": "Projects",
+  "contact": "Contact",
+  "contact_subject": "Subject",
+
   "hero_roles": ["Frontend Developer","UI/UX Enthusiast","Open Source Contributor"],
   "about_title": "About Me",
   "about_timeline": [

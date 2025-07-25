@@ -1,60 +1,124 @@
 // src/components/Navbar.tsx
-import type { FC } from 'react';
-import { Link, animateScroll as scroll } from 'react-scroll';
-import { motion } from 'framer-motion';
+import React, { memo, useState } from 'react';
+import { Link } from 'react-scroll';
+import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { ThemeSwitcher } from './ThemeSwitcher';
+import { slideDown } from '../lib/motionVariants';
+import { sectionPadding } from '../lib/styles';
 
-export const Navbar: FC = () => (
-<motion.nav
-  initial={{ y: -60, opacity: 0 }}
-  animate={{ y: 0, opacity: 1 }}
-  transition={{ duration: 0.5, ease: 'easeOut' }}
-  className="fixed top-0 w-full bg-bg/70 backdrop-blur-sm shadow-md z-50 mx-inherit"
+// Variants para los links
+const linkVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+};
 
->
-    <div className="max-w-4xl mx-auto flex items-center justify-between px-4 py-3">
-      {/* Logo / Brand */}
-      <motion.button
-        onClick={() => scroll.scrollToTop()}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="text-2xl font-bold text-primary hover:opacity-80 transition border border-fg/90 p-[5px] rounded"
-      >
-        MiPortafolio
-      </motion.button>
+const Navbar = () => {
+  const { t } = useTranslation();
+  const sections = ['home', 'about', 'projects', 'contact'];
+  const [menuOpen, setMenuOpen] = useState(false);
 
-      {/* Links (ocultos <500px) */}
-      <div className="flex items-center space-x-6 max-[500px]:hidden">
-        {['home', 'about', 'projects', 'contact'].map((section) => (
-          <motion.div
-            key={section}
-            whileHover={{ scale: 1.1 }}
-            className="cursor-pointer"
-          >
-            <Link
-              to={section}
-              smooth
-              duration={500}
-              className="text-fg hover:text-primary border border-fg/90 p-[5px] rounded transition-colors"
+  return (
+    <motion.nav
+      variants={slideDown()}
+      initial="hidden"
+      animate="visible"
+      className="fixed top-0 left-[5px] right-[5px] bg-bg/80 backdrop-blur-md shadow-lg z-50"
+    >
+      {/* contenedor con flex-direction invertido */}
+      <div className={`${sectionPadding} flex flex-row max-[510px]:flex-row-reverse items-center justify-between`}>
+        {/* Desktop menu: horizontal links */}
+        <div className="flex flex-row gap-4 max-[510px]:hidden">
+          {sections.map((sec) => (
+            <motion.div
+              key={sec}
+              variants={linkVariants}
+              initial="hidden"
+              animate="visible"
+              whileHover={{ scale: 1.1 }}
+              className="cursor-pointer"
             >
-              {section.toUpperCase()}
-            </Link>
+              <Link
+                to={sec}
+                smooth
+                offset={-80}
+                duration={500}
+                className="p-[3px] m-[5px] text-fg hover:text-primary transition-colors"
+                style={{
+                  backgroundColor: 'var(--bg)',
+                  opacity: 0.75,
+                  borderRadius: '8px',
+                }}
+              >
+                {t(sec)}
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Right side: switchers and mobile menu button */}
+        <div className="flex items-center gap-2">
+          <motion.div whileHover={{ rotate: 20 }} whileTap={{ rotate: 0 }} className="transition-transform">
+            <LanguageSwitcher />
           </motion.div>
-        ))}
-        <LanguageSwitcher />
-        <ThemeSwitcher />
+
+          <motion.div whileHover={{ rotate: 20 }} whileTap={{ rotate: 0 }} className="transition-transform">
+            <ThemeSwitcher />
+          </motion.div>
+
+          {/* Mobile hamburger menu button */}
+          <motion.button
+            onClick={() => setMenuOpen((o) => !o)}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="hidden max-[510px]:flex items-center justify-center px-2 text-2xl rounded border border-fg/70 hover:bg-bg/20 transition"
+          >
+            ≡
+          </motion.button>
+        </div>
       </div>
 
-      {/* Hamburger (solo <500px) */}
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
-        onClick={() => scroll.scrollToTop()}
-        className="hidden max-[500px]:flex items-center justify-center p-[5px] text-2xl rounded-md border border-fg/90 hover:bg-bg/20 transition"
-      >
-        ≡
-      </motion.button>
-    </div>
-  </motion.nav>
-);
+      {/* Mobile menu: vertical links under button */}
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+            className="md:hidden flex flex-col absolute top-full right-5 bg-bg/80 backdrop-blur-md shadow-lg py-2 pl-6"
+          >
+            {sections.map((sec) => (
+              <motion.div
+                key={sec}
+                variants={linkVariants}
+                initial="hidden"
+                animate="visible"
+                whileHover={{ scale: 1.05 }}
+                className="cursor-pointer"
+              >
+                <Link
+                  to={sec}
+                  smooth
+                  offset={-80}
+                  duration={500}
+                  className="p-[3px] m-[5px] text-fg hover:text-primary transition-colors"
+                  style={{
+                    backgroundColor: 'var(--bg)',
+                    opacity: 0.75,
+                    borderRadius: '8px',
+                  }}
+                >
+                  {t(sec)}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.nav>
+  );
+};
+
+export default memo(Navbar);

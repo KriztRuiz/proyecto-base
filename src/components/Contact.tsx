@@ -1,60 +1,71 @@
 // src/components/Contact.tsx
-import { useState } from 'react';
-import type { FC } from 'react';
+import React, { memo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import emailjs from '@emailjs/browser';
 import { Button } from './Button';
+import { fadeIn, slideUp } from '../lib/motionVariants';
+import { sectionPadding } from '../lib/styles';
 
-export const Contact: FC = () => {
+const Contact = () => {
   const { t } = useTranslation();
-  const [status, setStatus] = useState('');
+  const [status, setStatus] = useState<string>('');
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.currentTarget;
-    emailjs
-      .sendForm(
-        'service_tj955yp',
-        'template_7holsnr',
-        form,
-        'EbRCVBg5U0qok1sK4'
-      )
-      .then(() => setStatus(t('contact_success')))
-      .catch(() => setStatus(t('contact_error')));
+    try {
+      await emailjs.sendForm(
+        'your_service_id',
+        'your_template_id',
+        e.currentTarget,
+        'your_public_key'
+      );
+      setStatus(t('contact_success'));
+      e.currentTarget.reset();
+    } catch {
+      setStatus(t('contact_error'));
+    }
   };
 
   return (
-    <section id="contact" className="max-w-4xl mx-auto py-16 px-4">
+    <section id="contact" className={sectionPadding}>
       <motion.h2
         className="text-4xl font-bold mb-8 text-center"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
+        variants={fadeIn}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
       >
         {t('contact_title')}
       </motion.h2>
+
       <motion.form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4"
-        initial={{ y: 50, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
+        className="max-w-xl mx-auto flex flex-col gap-4"
+        variants={slideUp(0.1)}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
       >
         <input
-          name="user_name"
+          type="text"
+          name="name"
           placeholder={t('contact_name')}
           className="p-3 border rounded"
           required
         />
         <input
           type="email"
-          name="user_email"
+          name="email"
           placeholder={t('contact_email')}
           className="p-3 border rounded"
           required
+        />
+        <input
+          type="text"
+          name="subject"
+          placeholder={t('contact_subject')}
+          className="p-3 border rounded"
         />
         <textarea
           name="message"
@@ -69,3 +80,5 @@ export const Contact: FC = () => {
     </section>
   );
 };
+
+export default memo(Contact);

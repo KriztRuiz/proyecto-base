@@ -1,4 +1,10 @@
 {
+  "home": "Inicio",
+  "about": "Sobre mí",
+  "projects": "Proyectos",
+  "contact": "Contacto",
+  "contact_subject": "Asunto",
+
   "hero_title": "Bienvenido a Mi Portafolio",
   "hero_subtitle": "Ofrezco soluciones innovadoras y creativas.",
   "hero_roles": ["Desarrollador Frontend", "Entusiasta de UI/UX", "Colaborador Open Source"],
