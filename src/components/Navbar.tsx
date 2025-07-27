@@ -26,9 +26,9 @@ const Navbar = () => {
       animate="visible"
       className="fixed top-0 left-[5px] right-[5px] bg-bg/80 backdrop-blur-md shadow-lg z-50"
     >
-      {/* contenedor con flex-direction invertido */}
-      <div className={`${sectionPadding} flex flex-row max-[510px]:flex-row-reverse items-center justify-between`}>
-        {/* Desktop menu: horizontal links */}
+      {/* Contenedor principal con flex direction condicional */}
+      <div className={`${sectionPadding} flex flex-row max-[510px]:flex-row-reverse items-center justify-between max-[510px]:justify-end`}>
+        {/* Desktop menu: horizontal links ( ocultos en pantallas >510px ) */}
         <div className="flex flex-row gap-4 max-[510px]:hidden">
           {sections.map((sec) => (
             <motion.div
@@ -36,20 +36,16 @@ const Navbar = () => {
               variants={linkVariants}
               initial="hidden"
               animate="visible"
-              whileHover={{ scale: 1.1 }}
-              className="cursor-pointer"
+              whileHover={{ scale: 1.05 }}
+              className="cursor-pointer m-[5px] p-[3px] rounded-md transition-colors"
+              style={{ backgroundColor: 'var(--bg)', borderRadius: '8px' }}
             >
               <Link
                 to={sec}
                 smooth
                 offset={-80}
                 duration={500}
-                className="p-[3px] m-[5px] text-fg hover:text-primary transition-colors"
-                style={{
-                  backgroundColor: 'var(--bg)',
-                  opacity: 0.75,
-                  borderRadius: '8px',
-                }}
+                className="text-fg hover:text-primary"
               >
                 {t(sec)}
               </Link>
@@ -57,8 +53,8 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Right side: switchers and mobile menu button */}
-        <div className="flex items-center gap-2">
+        {/* Interruptores y botón móvil */}
+        <div className="flex items-center gap-2 max-[510px]:flex-row-reverse max-[510px]:justify-end">
           <motion.div whileHover={{ rotate: 20 }} whileTap={{ rotate: 0 }} className="transition-transform">
             <LanguageSwitcher />
           </motion.div>
@@ -67,7 +63,7 @@ const Navbar = () => {
             <ThemeSwitcher />
           </motion.div>
 
-          {/* Mobile hamburger menu button */}
+          {/* Botón hamburguesa para móvil */}
           <motion.button
             onClick={() => setMenuOpen((o) => !o)}
             whileHover={{ scale: 1.1 }}
@@ -79,7 +75,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu: vertical links under button */}
+      {/* Menú móvil: vertical links bajo el botón */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
@@ -96,19 +92,15 @@ const Navbar = () => {
                 initial="hidden"
                 animate="visible"
                 whileHover={{ scale: 1.05 }}
-                className="cursor-pointer"
+                className="hidden max-[510px]:block cursor-pointer m-[5px] p-[3px] rounded-md transition-colors"
+                style={{ backgroundColor: 'var(--bg)', borderRadius: '8px' }}
               >
                 <Link
                   to={sec}
                   smooth
                   offset={-80}
                   duration={500}
-                  className="p-[3px] m-[5px] text-fg hover:text-primary transition-colors"
-                  style={{
-                    backgroundColor: 'var(--bg)',
-                    opacity: 0.75,
-                    borderRadius: '8px',
-                  }}
+                  className="text-fg hover:text-primary"
                 >
                   {t(sec)}
                 </Link>

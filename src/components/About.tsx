@@ -9,32 +9,39 @@ const About = () => {
   const items = t('about_timeline', { returnObjects: true }) as { year: string; text: string }[];
 
   return (
-    <section id="about" className={sectionPadding}>
-      <motion.h2
-        className="text-4xl font-bold mb-8 text-center"
+    <section
+      id="about"
+      className={`${sectionPadding} flex flex-col items-center text-center gap-6 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:text-left min-[1100px]:gap-16`}
+    >
+      {/* Título */}
+      <motion.div
         variants={fadeIn}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
+        className="min-[1100px]:w-1/3"
       >
-        {t('about_title')}
-      </motion.h2>
+        <h2 className="text-4xl font-bold mb-8">{t('about_title')}</h2>
+      </motion.div>
 
-      <ul className="space-y-6">
+      {/* Línea de tiempo */}
+      <motion.ul
+        className="space-y-6 min-[1100px]:flex-1"
+        variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.2 } } }}
+        initial="hidden"
+        animate="visible"
+      >
         {items.map((item, i) => (
           <motion.li
             key={item.year}
-            className="flex gap-4 items-start border-l-4 pl-4 border-primary"
             variants={slideUp(i * 0.2)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
+            className="flex gap-4"
           >
             <span className="font-mono text-primary">{item.year}</span>
             <p>{item.text}</p>
           </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     </section>
   );
 };
