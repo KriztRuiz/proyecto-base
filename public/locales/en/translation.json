@@ -5,6 +5,8 @@
   "contact": "Contact",
   "contact_subject": "Subject",
 
+  "cta": "View Projects",
+
   "hero_roles": ["Frontend Developer","UI/UX Enthusiast","Open Source Contributor"],
   "about_title": "About Me",
   "about_timeline": [
@@ -23,5 +25,11 @@
   "contact_message":"Your Message",
   "contact_button":"Send Message",
   "contact_success":"Message sent successfully!",
-  "contact_error":"Failed to send message."
+   "contact_form_aria": "Contact form: fields for subject, name, email and message.",
+  "contact_error":"Failed to send message.",
+  "hero_title": "Welcome to My Portfolio",
+  "hero_subtitle": "I provide innovative and creative solutions.",
+  "navbar_open_menu": "Open menu",
+  "navbar_close_menu": "Close menu"
+  
 }

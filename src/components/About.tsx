@@ -73,6 +73,7 @@ const About = ({ embedded = false }: AboutProps) => {
     <section
       id="about"
       className={`snap-start ${sectionPadding} flex flex-col items-center text-center gap-6 min-[1100px]:flex-row min-[1100px]:items-start min-[1100px]:text-left min-[1100px]:gap-16`}
+
     >
       {content}
     </section>

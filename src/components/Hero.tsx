@@ -9,6 +9,8 @@ import Projects from './Projects';
 import Contact from './Contact';
 import { fadeIn, slideUp } from '../lib/motionVariants';
 import { sectionPadding } from '../lib/styles';
+import { Button } from './Button';
+import { Link } from 'react-scroll';
 
 interface HeroProps {
   /**
@@ -37,7 +39,7 @@ const Hero = ({ selectedSection }: HeroProps) => {
           {/* Avatar */}
           <motion.img
             src={avatar}
-            alt="Avatar"
+             alt={t('home')}
             className={[
               'rounded-full',
               'object-cover',
@@ -65,6 +67,11 @@ const Hero = ({ selectedSection }: HeroProps) => {
             <motion.p variants={slideUp(0.4)}>
               {t('hero_subtitle')}
             </motion.p>
+            <Link to="projects" smooth duration={500}>
+              <Button className="mt-6">
+                {t('cta')}
+              </Button>
+            </Link>
             <motion.div variants={slideUp(0.6)}>
               <ReactTyped
                 className="text-lg sm:text-xl md:text-2xl font-medium text-primary"
@@ -75,16 +82,16 @@ const Hero = ({ selectedSection }: HeroProps) => {
                 loop
               />
             </motion.div>
-            {/* Dynamic section content rendered below the hero heading inside the same card */}
+            {/* Contenido dinámico renderizado debajo del encabezado del héroe */}
             <AnimatePresence mode="wait">
               {selectedSection === 'about' && (
                 <motion.div
                   key="about"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-full mt-6 mb-8 p-6 bg-bg/80 backdrop-blur-lg rounded-xl shadow-lg"
                 >
                   <About embedded />
                 </motion.div>
@@ -92,11 +99,11 @@ const Hero = ({ selectedSection }: HeroProps) => {
               {selectedSection === 'projects' && (
                 <motion.div
                   key="projects"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-full mt-6 mb-8 p-6 bg-bg/80 backdrop-blur-lg rounded-xl shadow-lg"
                 >
                   <Projects embedded />
                 </motion.div>
@@ -104,11 +111,11 @@ const Hero = ({ selectedSection }: HeroProps) => {
               {selectedSection === 'contact' && (
                 <motion.div
                   key="contact"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="w-full"
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 0.95 }}
+                  transition={{ duration: 0.5, ease: 'easeInOut' }}
+                  className="w-full mt-6 mb-8 p-6 bg-bg/80 backdrop-blur-lg rounded-xl shadow-lg"
                 >
                   <Contact embedded />
                 </motion.div>

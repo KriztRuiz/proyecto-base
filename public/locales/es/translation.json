@@ -12,24 +12,24 @@
 
   "about_title": "Sobre Mí",
   "about_timeline": [
-    { "year": "2021", "text": "Comencé como Desarrollador Junior" },
-    { "year": "2022", "text": "Construí plataformas de comercio electrónico" },
-    { "year": "2023", "text": "Lideré equipos de frontend" }
+    { "year": "2021", "text": "Comence a aprender a programar" },
+    { "year": "2022", "text": "Empece a aprender Diseño Web" },
+    { "year": "2024", "text": "Me inicie en el backend con Node, ademas de aprender distintos frameworks y librerias, tambien empece a dominar otras tecnologias como Terminales, entornos virtuales y AWS" }
   ],
 
   "projects_title": "Mis Proyectos",
   "projects_list": [
     {
-      "title": "Proyecto A",
-      "desc": "Una aplicación innovadora",
-      "tech": ["React", "Node.js"],
-      "link": "https://proyecto-a.example.com"
+      "title": "AA-ArchDesign",
+      "desc": " diseñar espacios funcionales que reflejen tu esencia y cuenten tu historia",
+      "tech": ["React", "Node.js", "AWS"],
+      "link": "https://aaarchdesign.com/"
     },
     {
-      "title": "Proyecto B",
-      "desc": "Otra aplicación destacada",
-      "tech": ["TypeScript", "Tailwind CSS"],
-      "link": "https://proyecto-b.example.com"
+      "title": "Pizzas Valentina",
+      "desc": "Ingredientes frescos, recetas tradicionales y un sabor inigualable.",
+      "tech": ["HTML", "JS", "Netlify"],
+      "link": "https://pizzasvalentina.netlify.app/"
     }
   ],
 
@@ -39,5 +39,6 @@
   "contact_message": "Tu Mensaje",
   "contact_button": "Enviar Mensaje",
   "contact_success": "¡Mensaje enviado con éxito!",
+  "contact_form_aria": "Formulario de contacto: campos para asunto, nombre, correo y mensaje.",
   "contact_error": "Error al enviar el mensaje."
 }
